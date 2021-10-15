@@ -1,12 +1,17 @@
 import React from "react";
 import KanbanTask from "./KanbanTask";
+import "./KanbanColumn.css";
 
 const KanbanColumn = () => {
     return (
-        <div>
-            <h2>Columns name</h2>
-            <p>n tasks in column / task limit</p>
-            <div>
+        <div className="KanbanColumn">
+            <h2 className="KanbanColumn-name">Column name</h2>
+            <p className="KanbanColumn-numbers">
+                n tasks in column / task limit
+            </p>
+            <div className="KanbanColumns-tasks-container">
+                <KanbanTask />
+                <KanbanTask />
                 <KanbanTask />
             </div>
         </div>

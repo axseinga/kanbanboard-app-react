@@ -1,16 +1,17 @@
 import React from "react";
+import "./KanbanTask.css";
 
 const KanbanTask = () => {
     return (
-        <div>
-            <div>
-                <span>person assigned</span>
+        <div className="KanbanTask">
+            <div className="KanbanTask-assigned">
+                <span className="KanbanTask-assigned-img">Anna</span>
             </div>
-            <div>task content</div>
-            <div>
-                <span>who added</span>
-                <button>Edit</button>
-                <button>Delete</button>
+            <div className="KanbanTask-content">task content</div>
+            <div className="KanbanTask-options">
+                <span className="KanbanTask-added">img</span>
+                <button className="KanbanTask-btn-edit">Edit</button>
+                <button className="KanbanTask-btn-delete">Delete</button>
             </div>
         </div>
     );

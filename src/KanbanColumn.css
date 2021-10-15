@@ -1,0 +1,9 @@
+.KanbanColumn {
+    background-color: lightgrey;
+    width: 12%;
+}
+
+.KanbanColumn-name {
+    text-align: center;
+    font-size: 1.5rem;
+}

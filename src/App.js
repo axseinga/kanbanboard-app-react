@@ -2,7 +2,11 @@ import Kanban from "./Kanban";
 import "./App.css";
 
 function App() {
-    return <Kanban />;
+    return (
+        <div className="App">
+            <Kanban />
+        </div>
+    );
 }
 
 export default App;

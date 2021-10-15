@@ -1,5 +1,6 @@
 import React from "react";
 import KanbanColumn from "./KanbanColumn";
+import "./Kanban.css";
 
 const Kanban = () => {
     const taskLimitNumber = 5;
@@ -14,9 +15,15 @@ const Kanban = () => {
     ];
 
     return (
-        <div>
-            <h1>Kanban</h1>
-            <div>
+        <div className="Kanban">
+            <h1 className="Kanban-title">Kanban</h1>
+            <div className="Kanban-columns-container">
+                <KanbanColumn />
+                <KanbanColumn />
+                <KanbanColumn />
+                <KanbanColumn />
+                <KanbanColumn />
+                <KanbanColumn />
                 <KanbanColumn />
             </div>
         </div>
