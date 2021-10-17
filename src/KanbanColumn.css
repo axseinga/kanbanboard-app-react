@@ -1,9 +1,14 @@
 .KanbanColumn {
     background-color: lightgrey;
     width: 12%;
+    text-align: center;
 }
 
 .KanbanColumn-name {
-    text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.KanbanColumn-numbers {
+    font-size: 0.8rem;
 }
