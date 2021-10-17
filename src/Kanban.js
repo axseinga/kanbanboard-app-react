@@ -6,7 +6,10 @@ import "./Kanban.css";
 
 const Kanban = () => {
     const [columns, setColumns] = useState(columnsRawData);
-    const [tasks, setTasks] = useState(tasksRowData);
+    const [tasks, setTasks] = useState(
+        JSON.parse(window.localStorage.getItem("tasks")) || tasksRowData
+    );
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
 
     return (
         <div className="Kanban">
