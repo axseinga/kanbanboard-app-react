@@ -2,12 +2,12 @@ import React from "react";
 import KanbanTask from "./KanbanTask";
 import "./KanbanColumn.css";
 
-const KanbanColumn = () => {
+const KanbanColumn = (props) => {
     return (
         <div className="KanbanColumn">
-            <h2 className="KanbanColumn-name">Column name</h2>
+            <h2 className="KanbanColumn-name">{props.columnData.name}</h2>
             <p className="KanbanColumn-numbers">
-                n tasks in column / task limit
+                {props.columnData.tasks} / {props.columnData.limit};
             </p>
             <div className="KanbanColumns-tasks-container">
                 <KanbanTask />
