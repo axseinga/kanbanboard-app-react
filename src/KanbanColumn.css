@@ -9,7 +9,7 @@
     overflow: scroll;
 }
 
-.KanbanColumn-main {
+.KanbanColumns-tasks-container {
     display: flex;
     flex-direction: column;
     justify-content: center;

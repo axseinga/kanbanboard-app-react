@@ -55,8 +55,8 @@ export const columnsRawData = [
 ];
 
 export const tasksRowData = [
-    { id: 1, name: "Status component", idColumn: 1, user: "Anna" },
-    { id: 2, name: "Blog assets", idColumn: 1, user: "David" },
-    { id: 3, name: "Change css img", idColumn: 1, user: "Anna" },
-    { id: 4, name: "Chrome extension design", idColumn: 1, user: "David" },
+    { id: 1, text: "Status component", idColumn: 1, user: "Anna" },
+    { id: 2, text: "Blog assets", idColumn: 2, user: "David" },
+    { id: 3, text: "Change css img", idColumn: 3, user: "Anna" },
+    { id: 4, text: "Chrome extension design", idColumn: 4, user: "David" },
 ];

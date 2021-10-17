@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TasksContext } from "./context/TasksContext";
 import KanbanTask from "./KanbanTask";
 import "./KanbanColumn.css";
 
 const KanbanColumn = (props) => {
+    const tasks = useContext(TasksContext);
     return (
         <div
             className="KanbanColumn"
@@ -14,9 +16,11 @@ const KanbanColumn = (props) => {
                     {props.columnData.tasks} / {props.columnData.limit};
                 </p>
                 <div className="KanbanColumns-tasks-container">
-                    <KanbanTask />
-                    <KanbanTask />
-                    <KanbanTask />
+                    {tasks
+                        .filter((task) => task.idColumn === props.columnData.id)
+                        .map((task) => {
+                            return <KanbanTask key={task.id} task={task} />;
+                        })}
                 </div>
             </div>
             <div className="KanbanColumn-footer">

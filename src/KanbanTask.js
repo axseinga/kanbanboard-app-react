@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { TasksContext } from "./context/TasksContext";
+import React from "react";
 import "./KanbanTask.css";
 
-const KanbanTask = () => {
-    const tasks = useContext(TasksContext);
+const KanbanTask = (props) => {
     return (
         <div className="KanbanTask">
             <div className="KanbanTask-assigned">
-                <span className="KanbanTask-assigned-img">Anna</span>
+                <span className="KanbanTask-assigned-img">
+                    {props.task.user}
+                </span>
             </div>
-            <div className="KanbanTask-content">task content</div>
+            <div className="KanbanTask-content">{props.task.text}</div>
             <div className="KanbanTask-options">
                 <span className="KanbanTask-added">img</span>
                 <button className="KanbanTask-btn-edit">Edit</button>
