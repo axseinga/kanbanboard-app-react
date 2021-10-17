@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { columnsRawData } from "./KanbanData";
+import { columnsRawData, tasksRowData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
+import { TasksProvider } from "./context/TasksContext";
 import "./Kanban.css";
 
 const Kanban = () => {
     const [columns, setColumns] = useState(columnsRawData);
+    const [tasks, setTasks] = useState(tasksRowData);
 
     return (
         <div className="Kanban">
             <h1 className="Kanban-title">Kanban</h1>
-            <div className="Kanban-columns-container">
-                {columns.map((c) => {
-                    return <KanbanColumn columnData={c} key={c.id} />;
-                })}
-            </div>
+            <TasksProvider value={tasks}>
+                <div className="Kanban-columns-container">
+                    {columns.map((c) => {
+                        return <KanbanColumn columnData={c} key={c.name} />;
+                    })}
+                </div>
+            </TasksProvider>
         </div>
     );
 };

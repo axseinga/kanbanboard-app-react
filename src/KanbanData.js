@@ -8,7 +8,7 @@ export const columnsRawData = [
         name: "Pending",
         limit: taskLimitNumber,
         tasks: 0,
-        color: "#FF5F6F",
+        color: "#A162D8 ",
     },
     {
         id: 2,
@@ -29,7 +29,7 @@ export const columnsRawData = [
         name: "Development - Doing",
         limit: taskLimitNumber,
         tasks: 0,
-        color: "#A162D8",
+        color: "#FF5F6F",
     },
     {
         id: 5,
@@ -52,4 +52,11 @@ export const columnsRawData = [
         tasks: 0,
         color: "#FAAB49",
     },
+];
+
+export const tasksRowData = [
+    { id: 1, name: "Status component", idColumn: 1, user: "Anna" },
+    { id: 2, name: "Blog assets", idColumn: 1, user: "David" },
+    { id: 3, name: "Change css img", idColumn: 1, user: "Anna" },
+    { id: 4, name: "Chrome extension design", idColumn: 1, user: "David" },
 ];

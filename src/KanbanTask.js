@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TasksContext } from "./context/TasksContext";
 import "./KanbanTask.css";
 
 const KanbanTask = () => {
+    const tasks = useContext(TasksContext);
     return (
         <div className="KanbanTask">
             <div className="KanbanTask-assigned">

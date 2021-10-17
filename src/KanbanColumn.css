@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: scroll;
 }
 
 .KanbanColumn-main {
@@ -29,4 +30,17 @@
 
 .KanbanColumn-footer {
     padding: 1rem 0;
+}
+
+.KanbanColumn-btn-add {
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.3rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.KanbanColumn-btn-add:hover {
+    opacity: 1;
 }
