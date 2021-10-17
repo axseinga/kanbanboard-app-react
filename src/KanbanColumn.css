@@ -1,14 +1,32 @@
 .KanbanColumn {
-    background-color: lightgrey;
     width: 12%;
     text-align: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.KanbanColumn-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .KanbanColumn-name {
-    font-size: 1rem;
+    color: white;
+    font-size: 0.9rem;
     margin-top: 1rem;
+    letter-spacing: 0.1rem;
 }
 
 .KanbanColumn-numbers {
+    color: white;
     font-size: 0.8rem;
+}
+
+.KanbanColumn-footer {
+    padding: 1rem 0;
 }
