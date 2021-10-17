@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { TasksContext } from "./context/TasksContext";
 import KanbanTask from "./KanbanTask";
 import "./KanbanColumn.css";
+import { Droppable } from "react-beautiful-dnd";
 
 const KanbanColumn = (props) => {
     const tasks = useContext(TasksContext);
@@ -15,19 +16,33 @@ const KanbanColumn = (props) => {
                 <p className="KanbanColumn-numbers">
                     {props.columnData.tasks} / {props.columnData.limit};
                 </p>
-                <div className="KanbanColumns-tasks-container">
-                    {tasks
-                        .filter((task) => task.idColumn === props.columnData.id)
-                        .map((task) => {
-                            return (
-                                <KanbanTask
-                                    key={task.id}
-                                    task={task}
-                                    color={props.columnData.color}
-                                />
-                            );
-                        })}
-                </div>
+                <Droppable droppableId={`${props.columnData.id}`}>
+                    {(provided) => (
+                        <div
+                            ref={provided.innerRef}
+                            className="KanbanColumns-tasks-container"
+                            {...provided.droppableProps}
+                        >
+                            {tasks
+                                .filter(
+                                    (task) =>
+                                        task.idColumn === props.columnData.id
+                                )
+                                .map((task, index) => {
+                                    return (
+                                        <KanbanTask
+                                            key={task.id}
+                                            id={task.id}
+                                            task={task}
+                                            color={props.columnData.color}
+                                            index={index}
+                                        />
+                                    );
+                                })}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
             </div>
             <div className="KanbanColumn-footer">
                 <button className="KanbanColumn-btn-add">Add task</button>
