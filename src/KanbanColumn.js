@@ -19,7 +19,13 @@ const KanbanColumn = (props) => {
                     {tasks
                         .filter((task) => task.idColumn === props.columnData.id)
                         .map((task) => {
-                            return <KanbanTask key={task.id} task={task} />;
+                            return (
+                                <KanbanTask
+                                    key={task.id}
+                                    task={task}
+                                    color={props.columnData.color}
+                                />
+                            );
                         })}
                 </div>
             </div>

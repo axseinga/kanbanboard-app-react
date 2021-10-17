@@ -1,8 +1,8 @@
 .KanbanTask {
     background-color: white;
     margin: 1rem 0;
-    padding: 5px;
-    height: 100px;
+    padding: 10px;
+    height: min-content;
     min-width: 150px;
     width: 90%;
     display: flex;
@@ -11,10 +11,27 @@
     justify-content: space-evenly;
     border-radius: 5px;
     opacity: 0.9;
+    text-align: left;
+}
+
+.KanbanTask-content {
+    padding: 1rem 0;
+    font-size: 0.8rem;
 }
 
 .KanbanTask-options {
+    font-size: 0.8rem;
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+.KanbanTask-btn-edit,
+.KanbanTask-btn-delete {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
 }

@@ -11,9 +11,18 @@ const KanbanTask = (props) => {
             </div>
             <div className="KanbanTask-content">{props.task.text}</div>
             <div className="KanbanTask-options">
-                <span className="KanbanTask-added">img</span>
-                <button className="KanbanTask-btn-edit">Edit</button>
-                <button className="KanbanTask-btn-delete">Delete</button>
+                <button
+                    className="KanbanTask-btn-edit"
+                    style={{ backgroundColor: `${props.color}` }}
+                >
+                    Edit
+                </button>
+                <button
+                    className="KanbanTask-btn-delete"
+                    style={{ backgroundColor: `${props.color}` }}
+                >
+                    Cancel
+                </button>
             </div>
         </div>
     );
