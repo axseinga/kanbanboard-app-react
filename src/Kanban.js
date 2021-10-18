@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { columnsRawData, tasksRowData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
 import { TasksProvider } from "./context/TasksContext";
@@ -21,6 +21,10 @@ const Kanban = () => {
                 } else return;
             });
         });
+        updatedColumns.forEach((c) => {
+            const tasks = c.taskIds.length;
+            c.tasks = tasks;
+        });
         setColumns(updatedColumns);
     };
 
@@ -28,6 +32,7 @@ const Kanban = () => {
         const { destination, source, draggableId } = result;
 
         if (!destination) {
+            console.log("no destination");
             return;
         }
 
@@ -35,15 +40,31 @@ const Kanban = () => {
             destination.droppableId === source.droppableId &&
             destination.index === source.index
         ) {
+            console.log("index and destination the same");
             return;
         }
 
-        const column = columns[source.droppableId];
-        const newTaskIds = Array.from(
-            tasks.map((t) => {
-                return t.id;
-            })
-        );
+        const start = columns[source.droppableId];
+        const finish = columns[destination.droppableId];
+
+        if (start === finish) {
+            const newTaskIds = Array.from(start.taskIds);
+            console.log(source.index);
+            console.log(destination.index);
+
+            const swapTask = newTaskIds[source.index];
+            newTaskIds.splice(source.index, 1);
+            newTaskIds.splice(destination.index, 0, swapTask);
+
+            const newState = columns.map((c) => {
+                if (c.id === start.id) {
+                    c.taskIds = newTaskIds;
+                    c.tasks = newTaskIds.length;
+                    return c;
+                } else return c;
+            });
+            return newState;
+        } else return;
     };
 
     return (
