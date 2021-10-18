@@ -63,7 +63,7 @@ const Kanban = () => {
                     return c;
                 } else return c;
             });
-            return newState;
+            setColumns(newState);
         } else return;
     };
 
