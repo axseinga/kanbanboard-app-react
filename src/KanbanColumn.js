@@ -6,6 +6,10 @@ import { Droppable } from "react-beautiful-dnd";
 
 const KanbanColumn = (props) => {
     const tasks = useContext(TasksContext);
+    const filteredTasks = tasks.filter(
+        (task) => task.idColumn === props.columnData.id
+    );
+    props.updatedTasks(filteredTasks);
     return (
         <div
             className="KanbanColumn"
@@ -23,22 +27,17 @@ const KanbanColumn = (props) => {
                             className="KanbanColumns-tasks-container"
                             {...provided.droppableProps}
                         >
-                            {tasks
-                                .filter(
-                                    (task) =>
-                                        task.idColumn === props.columnData.id
-                                )
-                                .map((task, index) => {
-                                    return (
-                                        <KanbanTask
-                                            key={task.id}
-                                            id={task.id}
-                                            task={task}
-                                            color={props.columnData.color}
-                                            index={index}
-                                        />
-                                    );
-                                })}
+                            {filteredTasks.map((task, index) => {
+                                return (
+                                    <KanbanTask
+                                        key={task.id}
+                                        id={task.id}
+                                        task={task}
+                                        color={props.columnData.color}
+                                        index={index}
+                                    />
+                                );
+                            })}
                             {provided.placeholder}
                         </div>
                     )}

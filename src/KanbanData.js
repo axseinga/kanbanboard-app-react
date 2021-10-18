@@ -9,6 +9,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#A162D8 ",
+        taskIds: [],
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#5A9DF9",
+        taskIds: [],
     },
     {
         id: 3,
@@ -23,6 +25,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1387BE",
+        taskIds: [],
     },
     {
         id: 4,
@@ -30,6 +33,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#FF5F6F",
+        taskIds: [],
     },
     {
         id: 5,
@@ -37,6 +41,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#E0465E",
+        taskIds: [],
     },
     {
         id: 6,
@@ -44,6 +49,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1CC778",
+        taskIds: [],
     },
     {
         id: 7,
@@ -51,6 +57,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#FAAB49",
+        taskIds: [],
     },
 ];
 

@@ -12,8 +12,38 @@ const Kanban = () => {
     );
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
 
+    const updateTasksIds = (filteredTasks) => {
+        let updatedColumns = columns;
+        updatedColumns.forEach((c) => {
+            filteredTasks.forEach((t) => {
+                if (c.id === t.idColumn && !c.taskIds.includes(t)) {
+                    c.taskIds.push(t);
+                } else return;
+            });
+        });
+        setColumns(updatedColumns);
+    };
+
     const onDragEnd = (result) => {
-        // reorder column
+        const { destination, source, draggableId } = result;
+
+        if (!destination) {
+            return;
+        }
+
+        if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
+            return;
+        }
+
+        const column = columns[source.droppableId];
+        const newTaskIds = Array.from(
+            tasks.map((t) => {
+                return t.id;
+            })
+        );
     };
 
     return (
@@ -23,7 +53,13 @@ const Kanban = () => {
                 <TasksProvider value={tasks}>
                     <div className="Kanban-columns-container">
                         {columns.map((c) => {
-                            return <KanbanColumn columnData={c} key={c.name} />;
+                            return (
+                                <KanbanColumn
+                                    columnData={c}
+                                    key={c.name}
+                                    updatedTasks={updateTasksIds}
+                                />
+                            );
                         })}
                     </div>
                 </TasksProvider>
