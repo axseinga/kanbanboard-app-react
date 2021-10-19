@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TasksContext } from "./context/TasksContext";
 import KanbanTask from "./KanbanTask";
 import "./KanbanColumn.css";
@@ -9,7 +9,10 @@ const KanbanColumn = (props) => {
     const filteredTasks = tasks.filter(
         (task) => task.idColumn === props.columnData.id
     );
-    props.updatedTasks(filteredTasks);
+    useEffect(() => {
+        props.updatedTasks(filteredTasks);
+    }, [filteredTasks]);
+
     return (
         <div
             className="KanbanColumn"
@@ -28,6 +31,7 @@ const KanbanColumn = (props) => {
                             {...provided.droppableProps}
                         >
                             {filteredTasks.map((task, index) => {
+                                console.log(filteredTasks);
                                 return (
                                     <KanbanTask
                                         key={task.id}

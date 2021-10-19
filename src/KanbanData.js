@@ -9,7 +9,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#A162D8 ",
-        taskIds: [],
+        taskIds: [1, 5],
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#5A9DF9",
-        taskIds: [],
+        taskIds: [2],
     },
     {
         id: 3,
@@ -25,7 +25,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1387BE",
-        taskIds: [],
+        taskIds: [3, 7],
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#FF5F6F",
-        taskIds: [],
+        taskIds: [4, 6],
     },
     {
         id: 5,
@@ -49,7 +49,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1CC778",
-        taskIds: [],
+        taskIds: [8],
     },
     {
         id: 7,
