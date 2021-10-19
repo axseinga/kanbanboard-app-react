@@ -9,9 +9,7 @@ const KanbanColumn = (props) => {
     const filteredTasks = tasks.filter(
         (task) => task.idColumn === props.columnData.id
     );
-    useEffect(() => {
-        props.updatedTasks(filteredTasks);
-    }, [filteredTasks]);
+    props.updatedTasks(filteredTasks);
 
     return (
         <div
@@ -30,8 +28,7 @@ const KanbanColumn = (props) => {
                             className="KanbanColumns-tasks-container"
                             {...provided.droppableProps}
                         >
-                            {filteredTasks.map((task, index) => {
-                                console.log(filteredTasks);
+                            {props.columnData.taskIds.map((task, index) => {
                                 return (
                                     <KanbanTask
                                         key={task.id}

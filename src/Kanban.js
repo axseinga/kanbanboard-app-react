@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { columnsRawData, tasksRowData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
 import { TasksProvider } from "./context/TasksContext";
@@ -7,10 +7,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 const Kanban = () => {
     const [columns, setColumns] = useState(columnsRawData);
-    const [tasks, setTasks] = useState(
-        JSON.parse(window.localStorage.getItem("tasks")) || tasksRowData
-    );
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+    const [tasks, setTasks] = useState(tasksRowData);
 
     const updateTasksIds = (filteredTasks) => {
         let updatedColumns = columns;
@@ -21,10 +18,10 @@ const Kanban = () => {
                 } else return;
             });
         });
-        /*updatedColumns.forEach((c) => {
+        updatedColumns.forEach((c) => {
             const tasks = c.taskIds.length;
             c.tasks = tasks;
-        });*/
+        });
         setColumns(updatedColumns);
     };
 
@@ -57,14 +54,16 @@ const Kanban = () => {
             const newColumnsState = columns.map((c) => {
                 if (c.id === start.id) {
                     c.taskIds = newTaskIds;
-                    /*c.tasks = newTaskIds.length;*/
+                    c.tasks = newTaskIds.length;
                     return c;
                 } else return c;
             });
 
             const newColumnsState2 = [...newColumnsState];
             setColumns(newColumnsState2);
-        } else return;
+        } else {
+            return;
+        }
     };
 
     return (
