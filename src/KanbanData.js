@@ -2,7 +2,7 @@ import React from "react";
 
 const taskLimitNumber = 5;
 
-export const tasksRowData = [
+/*export const tasksRowData = [
     { id: 1, text: "Status component", idColumn: 1, user: "Anna" },
     { id: 2, text: "Blog assets", idColumn: 2, user: "David" },
     { id: 3, text: "Change css img", idColumn: 3, user: "Anna" },
@@ -11,7 +11,7 @@ export const tasksRowData = [
     { id: 6, text: "SEO", idColumn: 4, user: "Peter" },
     { id: 7, text: "Meeting", idColumn: 3, user: "Anna" },
     { id: 8, text: "UX", idColumn: 6, user: "Peter" },
-];
+];*/
 
 export const columnsRawData = [
     {
@@ -20,7 +20,15 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#A162D8 ",
-        taskIds: [],
+        taskIds: [
+            { id: 1, text: "Status component", idColumn: 1, user: "Anna" },
+            {
+                id: 5,
+                text: "New slides for presentation",
+                idColumn: 1,
+                user: "Anna",
+            },
+        ],
     },
     {
         id: 2,
@@ -28,7 +36,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#5A9DF9",
-        taskIds: [],
+        taskIds: [{ id: 2, text: "Blog assets", idColumn: 2, user: "David" }],
     },
     {
         id: 3,
@@ -36,7 +44,10 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1387BE",
-        taskIds: [],
+        taskIds: [
+            { id: 3, text: "Change css img", idColumn: 3, user: "Anna" },
+            { id: 7, text: "Meeting", idColumn: 3, user: "Anna" },
+        ],
     },
     {
         id: 4,
@@ -44,7 +55,15 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#FF5F6F",
-        taskIds: [],
+        taskIds: [
+            {
+                id: 4,
+                text: "Chrome extension design",
+                idColumn: 4,
+                user: "David",
+            },
+            { id: 6, text: "SEO", idColumn: 4, user: "Peter" },
+        ],
     },
     {
         id: 5,
@@ -60,7 +79,7 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         tasks: 0,
         color: "#1CC778",
-        taskIds: [],
+        taskIds: [{ id: 8, text: "UX", idColumn: 6, user: "Peter" }],
     },
     {
         id: 7,

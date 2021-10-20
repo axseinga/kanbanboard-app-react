@@ -5,11 +5,11 @@ import "./KanbanColumn.css";
 import { Droppable } from "react-beautiful-dnd";
 
 const KanbanColumn = (props) => {
-    const tasks = useContext(TasksContext);
-    const filteredTasks = tasks.filter(
+    /*const tasks = useContext(TasksContext);*/
+    /*const filteredTasks = tasks.filter(
         (task) => task.idColumn === props.columnData.id
     );
-    props.updatedTasks(filteredTasks);
+    props.updatedTasks(filteredTasks);*/
 
     return (
         <div

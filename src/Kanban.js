@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { columnsRawData, tasksRowData } from "./KanbanData";
+import { columnsRawData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
 import { TasksProvider } from "./context/TasksContext";
 import "./Kanban.css";
@@ -7,9 +7,9 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 const Kanban = () => {
     const [columns, setColumns] = useState(columnsRawData);
-    const [tasks, setTasks] = useState(tasksRowData);
+    /*const [tasks, setTasks] = useState(tasksRowData);*/
 
-    const updateTasksIds = (filteredTasks) => {
+    /*const updateTasksIds = (filteredTasks) => {
         let updatedColumns = columns;
         updatedColumns.forEach((c) => {
             filteredTasks.forEach((t) => {
@@ -23,7 +23,7 @@ const Kanban = () => {
             c.tasks = tasks;
         });
         setColumns(updatedColumns);
-    };
+    };*/
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result;
@@ -62,13 +62,13 @@ const Kanban = () => {
             setColumns(newColumnsState2);
         } else {
             const startTaskIds = Array.from(start.taskIds);
-            // item not removing from array issue
-            const itemArr = startTaskIds.splice(source.index, 1);
-            console.log(startTaskIds);
+            const [item] = startTaskIds.splice(source.index, 1);
 
             const finishTaskIds = Array.from(finish.taskIds);
-            const [item] = itemArr;
             finishTaskIds.splice(destination.index, 0, item);
+
+            console.log(startTaskIds);
+            console.log(finishTaskIds);
 
             const newColumnsState = columns.map((c) => {
                 if (c.id === start.id) {
@@ -80,7 +80,37 @@ const Kanban = () => {
                 } else return c;
             });
             const newColumnsState2 = [...newColumnsState];
+            console.log(newColumnsState2);
             setColumns(newColumnsState2);
+
+            // item not removing from array issue
+            /*const itemArr = [...startTaskIds];
+            itemArr.splice(source.index, 1);
+            const [item] = itemArr;
+            const newStartTaskIds = [];
+            startTaskIds.forEach((t) => {
+                if (t !== item) {
+                    console.log(t);
+                    return newStartTaskIds;
+                }
+            });
+            const finishTaskIds = Array.from(finish.taskIds);
+            finishTaskIds.splice(destination.index, 0, item);
+
+            console.log(newStartTaskIds);
+            console.log(finishTaskIds);
+
+            const newColumnsState = columns.map((c) => {
+                if (c.id === start.id) {
+                    c.taskIds = newStartTaskIds;
+                    return c;
+                } else if (c.id === finish.id) {
+                    c.taskIds = finishTaskIds;
+                    return c;
+                } else return c;
+            });
+            const newColumnsState2 = [...newColumnsState];
+            setColumns(newColumnsState2);*/
         }
     };
 
@@ -88,19 +118,19 @@ const Kanban = () => {
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="Kanban">
                 <h1 className="Kanban-title">Kanban</h1>
-                <TasksProvider value={tasks}>
-                    <div className="Kanban-columns-container">
-                        {columns.map((c) => {
-                            return (
-                                <KanbanColumn
-                                    columnData={c}
-                                    key={c.name}
-                                    updatedTasks={updateTasksIds}
-                                />
-                            );
-                        })}
-                    </div>
-                </TasksProvider>
+                {/*<TasksProvider value={tasks}>*/}
+                <div className="Kanban-columns-container">
+                    {columns.map((c) => {
+                        return (
+                            <KanbanColumn
+                                columnData={c}
+                                key={c.name}
+                                /*updatedTasks={updateTasksIds}*/
+                            />
+                        );
+                    })}
+                </div>
+                {/*</TasksProvider>*/}
             </div>
         </DragDropContext>
     );

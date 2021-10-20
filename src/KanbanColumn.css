@@ -6,6 +6,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    min-height: min-content;
+    height: 100%;
     overflow: scroll;
 }
 
