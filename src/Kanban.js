@@ -63,24 +63,28 @@ const Kanban = () => {
             const newColumnsState2 = [...newColumnsState];
             setColumns(newColumnsState2);
         } else {
-            const startTaskIds = Array.from(start.taskIds);
-            const [item] = startTaskIds.splice(source.index, 1);
+            if (finish.taskIds.length < finish.limit) {
+                console.log(finish.taskIds.length);
+                console.log(finish.limit);
+                const startTaskIds = Array.from(start.taskIds);
+                const [item] = startTaskIds.splice(source.index, 1);
 
-            const finishTaskIds = Array.from(finish.taskIds);
-            finishTaskIds.splice(destination.index, 0, item);
+                const finishTaskIds = Array.from(finish.taskIds);
+                finishTaskIds.splice(destination.index, 0, item);
 
-            const newColumnsState = columns.map((c) => {
-                if (c.id === start.id) {
-                    c.taskIds = startTaskIds;
-                    return c;
-                } else if (c.id === finish.id) {
-                    c.taskIds = finishTaskIds;
-                    return c;
-                } else return c;
-            });
-            const newColumnsState2 = [...newColumnsState];
-            setColumns(newColumnsState2);
-            window.localStorage.setItem("columns", JSON.stringify(columns));
+                const newColumnsState = columns.map((c) => {
+                    if (c.id === start.id) {
+                        c.taskIds = startTaskIds;
+                        return c;
+                    } else if (c.id === finish.id) {
+                        c.taskIds = finishTaskIds;
+                        return c;
+                    } else return c;
+                });
+                const newColumnsState2 = [...newColumnsState];
+                setColumns(newColumnsState2);
+                window.localStorage.setItem("columns", JSON.stringify(columns));
+            } else return;
         }
     };
 
