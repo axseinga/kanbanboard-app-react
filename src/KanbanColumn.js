@@ -19,7 +19,8 @@ const KanbanColumn = (props) => {
             <div className="KanbanColumn-main">
                 <h2 className="KanbanColumn-name">{props.columnData.name}</h2>
                 <p className="KanbanColumn-numbers">
-                    {props.columnData.tasks} / {props.columnData.limit};
+                    {props.columnData.taskIds.length} / {props.columnData.limit}
+                    ;
                 </p>
                 <Droppable droppableId={`${props.columnData.id - 1}`}>
                     {(provided) => (

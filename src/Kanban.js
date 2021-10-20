@@ -6,7 +6,9 @@ import "./Kanban.css";
 import { DragDropContext } from "react-beautiful-dnd";
 
 const Kanban = () => {
-    const [columns, setColumns] = useState(columnsRawData);
+    const [columns, setColumns] = useState(
+        JSON.parse(window.localStorage.getItem("columns")) || columnsRawData
+    );
     /*const [tasks, setTasks] = useState(tasksRowData);*/
 
     /*const updateTasksIds = (filteredTasks) => {
@@ -67,9 +69,6 @@ const Kanban = () => {
             const finishTaskIds = Array.from(finish.taskIds);
             finishTaskIds.splice(destination.index, 0, item);
 
-            console.log(startTaskIds);
-            console.log(finishTaskIds);
-
             const newColumnsState = columns.map((c) => {
                 if (c.id === start.id) {
                     c.taskIds = startTaskIds;
@@ -80,8 +79,8 @@ const Kanban = () => {
                 } else return c;
             });
             const newColumnsState2 = [...newColumnsState];
-            console.log(newColumnsState2);
             setColumns(newColumnsState2);
+            window.localStorage.setItem("columns", JSON.stringify(columns));
         }
     };
 
