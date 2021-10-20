@@ -46,7 +46,12 @@ const KanbanColumn = (props) => {
                 </Droppable>
             </div>
             <div className="KanbanColumn-footer">
-                <button className="KanbanColumn-btn-add">Add task</button>
+                <button
+                    className="KanbanColumn-btn-add"
+                    onClick={() => props.addTask()}
+                >
+                    Add task
+                </button>
             </div>
         </div>
     );

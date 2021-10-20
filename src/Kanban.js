@@ -3,6 +3,7 @@ import { columnsRawData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
 import { TasksProvider } from "./context/TasksContext";
 import "./Kanban.css";
+import KanbanModal from "./KanbanModal";
 import { DragDropContext } from "react-beautiful-dnd";
 
 const Kanban = () => {
@@ -88,9 +89,14 @@ const Kanban = () => {
         }
     };
 
+    const addTask = (newTask) => {
+        console.log("add new task");
+    };
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="Kanban">
+                <KanbanModal />
                 <h1 className="Kanban-title">Kanban</h1>
                 {/*<TasksProvider value={tasks}>*/}
                 <div className="Kanban-columns-container">
@@ -100,6 +106,7 @@ const Kanban = () => {
                                 columnData={c}
                                 key={c.name}
                                 /*updatedTasks={updateTasksIds}*/
+                                addTask={addTask}
                             />
                         );
                     })}
