@@ -82,35 +82,6 @@ const Kanban = () => {
             const newColumnsState2 = [...newColumnsState];
             console.log(newColumnsState2);
             setColumns(newColumnsState2);
-
-            // item not removing from array issue
-            /*const itemArr = [...startTaskIds];
-            itemArr.splice(source.index, 1);
-            const [item] = itemArr;
-            const newStartTaskIds = [];
-            startTaskIds.forEach((t) => {
-                if (t !== item) {
-                    console.log(t);
-                    return newStartTaskIds;
-                }
-            });
-            const finishTaskIds = Array.from(finish.taskIds);
-            finishTaskIds.splice(destination.index, 0, item);
-
-            console.log(newStartTaskIds);
-            console.log(finishTaskIds);
-
-            const newColumnsState = columns.map((c) => {
-                if (c.id === start.id) {
-                    c.taskIds = newStartTaskIds;
-                    return c;
-                } else if (c.id === finish.id) {
-                    c.taskIds = finishTaskIds;
-                    return c;
-                } else return c;
-            });
-            const newColumnsState2 = [...newColumnsState];
-            setColumns(newColumnsState2);*/
         }
     };
 
