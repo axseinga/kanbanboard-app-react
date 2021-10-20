@@ -48,7 +48,7 @@ const KanbanColumn = (props) => {
             <div className="KanbanColumn-footer">
                 <button
                     className="KanbanColumn-btn-add"
-                    onClick={() => props.addTask()}
+                    onClick={(e) => props.openModal(e)}
                 >
                     Add task
                 </button>

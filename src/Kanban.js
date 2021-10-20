@@ -10,6 +10,8 @@ const Kanban = () => {
     const [columns, setColumns] = useState(
         JSON.parse(window.localStorage.getItem("columns")) || columnsRawData
     );
+    const [modal, setModal] = useState(false);
+
     /*const [tasks, setTasks] = useState(tasksRowData);*/
 
     /*const updateTasksIds = (filteredTasks) => {
@@ -65,8 +67,6 @@ const Kanban = () => {
             setColumns(newColumnsState2);
         } else {
             if (finish.taskIds.length < finish.limit) {
-                console.log(finish.taskIds.length);
-                console.log(finish.limit);
                 const startTaskIds = Array.from(start.taskIds);
                 const [item] = startTaskIds.splice(source.index, 1);
 
@@ -89,14 +89,30 @@ const Kanban = () => {
         }
     };
 
+    const openModal = (e) => {
+        setModal(true);
+        const parent = e.currentTarget.parentElement.parentElement;
+        console.log(parent);
+    };
+
+    const closeModal = () => {
+        setModal(false);
+    };
+
     const addTask = (newTask) => {
-        console.log("add new task");
+        console.log(newTask);
+        setModal(false);
     };
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="Kanban">
-                <KanbanModal />
+                {modal && (
+                    <KanbanModal
+                        closeModal={closeModal}
+                        addTask={(e) => addTask(e)}
+                    />
+                )}
                 <h1 className="Kanban-title">Kanban</h1>
                 {/*<TasksProvider value={tasks}>*/}
                 <div className="Kanban-columns-container">
@@ -106,7 +122,7 @@ const Kanban = () => {
                                 columnData={c}
                                 key={c.name}
                                 /*updatedTasks={updateTasksIds}*/
-                                addTask={addTask}
+                                openModal={(e) => openModal(e)}
                             />
                         );
                     })}
