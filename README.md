@@ -18,7 +18,7 @@
 
 ### The challenge
 
-The challenge was to build an app for a potential client who required Kanban solution similar to [this one](https://kanbanblog.com/explained/). The app had to be planned accordingly to MVP pattern, which stands for <i>'minimum viable product', and refers to the initial stage of creating the first workable (and saleable) version of a new concept.<i> The technology is React with a strong accent to use React Hooks.
+The challenge was to build an app for a potential client who required Kanban solution similar to [this one](https://kanbanblog.com/explained/). The app had to be planned accordingly to MVP pattern, which stands for <i>'minimum viable product', and refers to the initial stage of creating the first workable (and saleable) version of a new concept.</i> The technology is React with a strong accent to use React Hooks.
 
 The user can use a Kanban board by adding, editing, and canceling tasks. Tasks are movable between the columns as well. Every column has a limit for tasks that it can contain (which is five by default). If the user reached the maximum number of tasks in a particular column it will not be possible to move another one to it or add a new one. data is saved in localStorage so the user can come back to the board as it was left before closing the web browser.
 
