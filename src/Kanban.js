@@ -105,6 +105,22 @@ const Kanban = () => {
         window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
+    const editTask = (taskId, newUser, newText) => {
+        const updatedColumns = columns.map((column) => {
+            return Object.assign({}, column, {
+                taskIds: column.taskIds.map((task) => {
+                    if (task.id === taskId) {
+                        task.user = newUser;
+                        task.text = newText;
+                        return task;
+                    }
+                    return task;
+                }),
+            });
+        });
+        console.log(updatedColumns);
+    };
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="Kanban">
@@ -124,6 +140,7 @@ const Kanban = () => {
                                 key={c.name}
                                 openModal={openModal}
                                 removeTask={removeTask}
+                                editTask={editTask}
                             />
                         );
                     })}
