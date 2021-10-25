@@ -82,14 +82,27 @@ const Kanban = () => {
     const addTask = (newTask) => {
         setModal(false);
         const updatedColumns = columns.map((column) => {
-            console.log(column.tasks);
             if (column.id === newTask.idColumn && column.taskIds.length < 5) {
                 column.taskIds.push(newTask);
                 return column;
             } else return column;
         });
         setColumns(updatedColumns);
-        /*window.localStorage.setItem("columns", JSON.stringify(columns));*/
+        window.localStorage.setItem("columns", JSON.stringify(columns));
+    };
+
+    const removeTask = (taskId) => {
+        const updatedColumns = columns
+            .map((column) => {
+                return Object.assign({}, column, {
+                    taskIds: column.taskIds.filter(
+                        (task) => task.id !== taskId
+                    ),
+                });
+            })
+            .filter((column) => column.taskIds.length >= 0);
+        setColumns(updatedColumns);
+        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
     return (
@@ -110,6 +123,7 @@ const Kanban = () => {
                                 columnData={c}
                                 key={c.name}
                                 openModal={openModal}
+                                removeTask={removeTask}
                             />
                         );
                     })}

@@ -1,6 +1,7 @@
 import React from "react";
 import "./KanbanModal.css";
 import useInputState from "./useInputState";
+import { v4 as uuidv4 } from "uuid";
 
 const KanbanModal = (props) => {
     const [text, handleChangeText] = useInputState("");
@@ -8,7 +9,12 @@ const KanbanModal = (props) => {
 
     const idColumn = props.columnData;
 
-    const newTask = { id: 9, text: text, idColumn: idColumn, user: user };
+    const newTask = {
+        id: uuidv4(),
+        text: text,
+        idColumn: idColumn,
+        user: user,
+    };
 
     return (
         <div className="KanbanModal">

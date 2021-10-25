@@ -9,9 +9,14 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         color: "#A162D8 ",
         taskIds: [
-            { id: 1, text: "Status component", idColumn: 1, user: "Anna" },
             {
-                id: 5,
+                id: uuidv4(),
+                text: "Status component",
+                idColumn: 1,
+                user: "Anna",
+            },
+            {
+                id: uuidv4(),
                 text: "New slides for presentation",
                 idColumn: 1,
                 user: "Anna",
@@ -23,7 +28,9 @@ export const columnsRawData = [
         name: "Analysis - Doing",
         limit: taskLimitNumber,
         color: "#5A9DF9",
-        taskIds: [{ id: 2, text: "Blog assets", idColumn: 2, user: "David" }],
+        taskIds: [
+            { id: uuidv4(), text: "Blog assets", idColumn: 2, user: "David" },
+        ],
     },
     {
         id: 3,
@@ -31,8 +38,8 @@ export const columnsRawData = [
         limit: taskLimitNumber,
         color: "#1387BE",
         taskIds: [
-            { id: 3, text: "Change css img", idColumn: 3, user: "Anna" },
-            { id: 7, text: "Meeting", idColumn: 3, user: "Anna" },
+            { id: uuidv4(), text: "Change css img", idColumn: 3, user: "Anna" },
+            { id: uuidv4(), text: "Meeting", idColumn: 3, user: "Anna" },
         ],
     },
     {
@@ -42,12 +49,12 @@ export const columnsRawData = [
         color: "#FF5F6F",
         taskIds: [
             {
-                id: 4,
+                id: uuidv4(),
                 text: "Chrome extension design",
                 idColumn: 4,
                 user: "David",
             },
-            { id: 6, text: "SEO", idColumn: 4, user: "Peter" },
+            { id: uuidv4(), text: "SEO", idColumn: 4, user: "Peter" },
         ],
     },
     {
@@ -62,7 +69,7 @@ export const columnsRawData = [
         name: "Test",
         limit: taskLimitNumber,
         color: "#1CC778",
-        taskIds: [{ id: 8, text: "UX", idColumn: 6, user: "Peter" }],
+        taskIds: [{ id: uuidv4(), text: "UX", idColumn: 6, user: "Peter" }],
     },
     {
         id: 7,

@@ -30,6 +30,7 @@ const KanbanColumn = (props) => {
                                         task={task}
                                         color={props.columnData.color}
                                         index={index}
+                                        removeTask={props.removeTask}
                                     />
                                 );
                             })}

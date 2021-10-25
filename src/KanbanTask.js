@@ -28,6 +28,7 @@ const KanbanTask = (props) => {
                         <button
                             className="KanbanTask-btn-delete"
                             style={{ backgroundColor: `${props.color}` }}
+                            onClick={() => props.removeTask(props.task.id)}
                         >
                             Cancel
                         </button>
