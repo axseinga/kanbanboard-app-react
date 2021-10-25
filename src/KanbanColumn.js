@@ -42,6 +42,9 @@ const KanbanColumn = (props) => {
                 <button
                     className="KanbanColumn-btn-add"
                     onClick={() => props.openModal(props.columnData)}
+                    disabled={
+                        props.columnData.taskIds.length >= 5 ? true : false
+                    }
                 >
                     Add task
                 </button>

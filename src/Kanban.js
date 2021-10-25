@@ -82,13 +82,14 @@ const Kanban = () => {
     const addTask = (newTask) => {
         setModal(false);
         const updatedColumns = columns.map((column) => {
-            if (column.id === newTask.idColumn) {
+            console.log(column.tasks);
+            if (column.id === newTask.idColumn && column.taskIds.length < 5) {
                 column.taskIds.push(newTask);
                 return column;
             } else return column;
         });
         setColumns(updatedColumns);
-        window.localStorage.setItem("columns", JSON.stringify(columns));
+        /*window.localStorage.setItem("columns", JSON.stringify(columns));*/
     };
 
     return (
