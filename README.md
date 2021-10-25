@@ -1,93 +1,121 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# devmentor.pl - React: Modern / Kanban App
 
-&nbsp;
+## Table of contents
 
+-   [Overview](#overview)
+    -   [The challenge](#the-challenge)
+    -   [Screenshot](#screenshot)
+    -   [Links](#links)
+-   [My process](#my-process)
+    -   [Built with](#built-with)
+    -   [What I learned](#what-i-learned)
+    -   [Continued development](#continued-development)
+    -   [Useful resources](#useful-resources)
+-   [Author](#author)
+-   [Acknowledgments](#acknowledgments)
 
-# React Kanban
+## Overview
 
-Otrzymałeś zlecenie, które polega na implementacji systemu Kanban.
+### The challenge
 
-Idealnie się składa ponieważ sam chciałeś poznać tą metodykę działania! Słyszałeś, że często jest ona wykorzystywana w działach IT i nie chciałbyś być "zielonym" jeśli trafisz do zespołu, w którym jest wykorzystywana.
+The challenge was to build an app for a potential client who required Kanban solution similar to [this one](https://kanbanblog.com/explained/). The app had to be planned accordingly to MVP pattern, which stands for <i>'minimum viable product', and refers to the initial stage of creating the first workable (and saleable) version of a new concept.<i> The technology is React with a strong accent to use React Hooks.
 
-Klient chce rozwiązanie zbliżone do tego: https://kanbanblog.com/explained/
+The user can use a Kanban board by adding, editing, and canceling tasks. Tasks are movable between the columns as well. Every column has a limit for tasks that it can contain (which is five by default). If the user reached the maximum number of tasks in a particular column it will not be possible to move another one to it or add a new one. data is saved in localStorage so the user can come back to the board as it was left before closing the web browser.
 
-Pamiętaj, że zanim zajmiesz się planowaniem i wdrażaniem powinieneś zgłębić wiedzę na dany temat. Proponuję, abyś zapoznał się z [4 filmami od Atlassian](https://www.youtube.com/watch?v=iVaFVa7HYj4&list=PLaD4FvsFdarR3oF1gp5_NmnlL-BQIE9sW&index=1), które pozwolą lepiej zrozumieć Ci koncepcję Kanban. Warto też zapoznać się z [artykułem w języku polskim](https://productvision.pl/2015/gdzie-scrum-nie-moze-tam-kanban-posle/), aby ograniczyć błędy związane z barierą językową.
+### Screenshot
 
-Należy również poznać [konkurencję](https://kanbantool.com/pl/), na której będziesz mógł się wzorować.
+![](./Screenshot.png)
 
+### Links
 
-## Założenia
+-   Solution URL: [Check out my code](https://github.com/axseinga/kanbanboard-app-react)
+-   Live Site URL: [and see live site here!](https://axseinga-kanbanboard-app-react.netlify.app/)
 
-Na początku zawsze warto określić [MVP](http://www.biznesowerewolucje.com/mvp-minimum-viable-product-praktycznie/). W naszym przypadku może to być:
+## My process
 
-- tablica z określonymi z góry kolumnami i limitem zadań
-- zadania o cechach:
-    - nazwa
-    - aktualna kolumna
-    - użytkownik (osoba odpowiedzialna)
-- możliwość przemieszczania zadań
+Before starting this project I have researched Kanban boards and checked different Kanban board apps. I picked [one](https://monday.com/) that I liked and decided to follow a similar design. First I coded data structure for my Kanban boards with separate tasks and columns but shortly I figure out this is not a good approach if in the future I want to make my Kanban board interactive. My Kanban board is managed by state (`columns`) created with the `useState` hook. After creating functional components (`Kanban.js`, `KanbanColumn.js`, `KanbanTask.js`) and figuring out how to correctly render tasks inside columns I decided to focus on making my Kanban board interactive and allowing the user to move tasks between columns. To achieve this goal I decided to use React Beautiful DnD library. Thanks to very good [video](https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd) by Alex Reardon I learned how to use it and implemented it into my project. I had an issue with the part where the state is updated and had to come up with my version for the parts of the function that update it.
 
-### Przechowywanie danych
+```if (start === finish) {
+            const newTaskIds = Array.from(start.taskIds);
 
-Na tym etapie chcemy wykorzystać najszybszą do implementacji możliwość zapisywania ustawień naszej tablic. Dlatego wybór padł na [localStorage](http://kursjs.pl/kurs/storage/storage.php). W ten sposób będzie można testować rozwiązanie nie musząc przejmować się zaawansowanymi rozwiązaniami.
+            const swapTask = newTaskIds[source.index];
+            newTaskIds.splice(source.index, 1);
+            newTaskIds.splice(destination.index, 0, swapTask);
 
-Na pewno ułatwiłby Ci pracę hook, który udostępniałby metody umożliwiające zapis i odczyt danych z localStorage np.:
+            const newColumnsState = columns.map((c) => {
+                if (c.id === start.id) {
+                    c.taskIds = newTaskIds;
+                    return c;
+                } else return c;
+            });
+
+            const newColumnsState2 = [...newColumnsState];
+            setColumns(newColumnsState2);
+        } else {
+            if (finish.taskIds.length < finish.limit) {
+                const startTaskIds = Array.from(start.taskIds);
+                const [item] = startTaskIds.splice(source.index, 1);
+
+                const finishTaskIds = Array.from(finish.taskIds);
+                finishTaskIds.splice(destination.index, 0, item);
+
+                const newColumnsState = columns.map((c) => {
+                    if (c.id === start.id) {
+                        c.taskIds = startTaskIds;
+                        return c;
+                    } else if (c.id === finish.id) {
+                        c.taskIds = finishTaskIds;
+                        return c;
+                    } else return c;
+                });
 ```
-const [getItem, setItem] = useStorage('name');
+
+When I finished the part with DnD library and everything was working correctly I decided to add the "add task" feature and do it using a modal window. I coded separate component for my modal and created functions to open and close it. The difficult part for me was to figure out how to know which column is clicked and to which column a new task should be added. With the advice I passed the data as a parameter of `setModal`:
+
+```
+const openModal = (data) => {
+        const columnId = data.id;
+        setModal(columnId);
+    };
 ```
 
-Dodatkowo przy pierwszym uruchomieniu należałoby pobrać dane z localStorage oraz przekazać dane do wnętrza aplikacji za pomocą Context API. Jeśli takich danych nie ma to trzeba ustawić wartości początkowe.
+With that information and new content gathered from inputs, I was able to update columns appropriately and render a new view. The last bits were to create the `cancel` option to delete tasks and the `edit` option to edit tasks if needed. The `edit` option was a bit more complicated so I decided to create a separate component with the edit form.
 
-Trzeba się też zastanowić nad strukturą zapisywanych danych. 
+During the process for keys, I decided to use [uuid](https://www.npmjs.com/package/uuid) which is a library to create strong, unique ids.
 
-Musimy przechowywać informacje o maksymalnej ilości zadań w kolumnach, ich nazwach i pewnie przydałby się jakiś identyfikator np.:
-```
-[
-    {id: 1, name: 'Pending', limit: 4},
-    {id: 2, name: 'Analysis - Doing', limit: 3},
-    {id: 3, name: 'Analysis - Done', limit: 2},
-    // ...
-]
-``` 
+### Built with
 
-Podobna struktura mogłbaby wyglądać przy zadaniach:
-```
-[
-    {id: 1, name: 'Task1', idColumn: 1, user: 'Anna'},
-    {id: 2, name: 'Task2', idColumn: 1, user: 'Anna'},
-    {id: 3, name: 'Task3', idColumn: 1, user: 'Anna'},
-    // ...
-]
-```
+-   React
+-   React Hooks and custom Hooks
+-   React Icons
+-   Javascript
+-   CSS
+-   Flexbox
+-   Webpack
 
-Ponieważ staramy się maksymalnie wszystko uprosić na początku to uznajemy, że `id` w kolumnach są zawsze kolejnymi numerami i przemieszczenie się zadań między nimi odbywa się przy pomocy dodania lub odjęcia jeden od aktualnej wartości dla `idColumn`.
+### What I learned
 
-### Komponenty
+With this project and learned more about React Hooks and how to create custom hooks for my applications. As well I had a chance for the first time to use the Beautiful Dnd library.
 
-Już na tym etapie powinieneś być świadomy jakich komponentów będziesz potrzebować.
+### Continued development
 
-Nasza tablica może być komponentem o nazwie `<Board />`. Tablica składa się z kolumn więc będziemy potrzebować komponentu `<Column />`. W każdej kolumnie będą wyświetlane zadania więc `<Task />` też się przyda. Musimy mieć możliwość tworzenia zadań dlatego bez komponentu `<Form />` też się nie obędziemy.
+This Kanban board is only one view and could be a part of a much bigger application. It has the potential to add more features as comment sections for tasks, avatars related to users, deadlines, and indicating bottlenecks. And a lot more. I am planning to adjust it to the tablet and mobile versions as well.
 
-## Od czego zaczać?
+### Useful resources
 
-Najpierw utwórz strukturę danych wew. Twojej aplikacji i postaraj się wyświetlić wszystkie elementy wkorzystując odpowiednie komponenty. Dane możesz przechowywać w `state` w komponencie `<App />`, które przekazujesz przez Context API. Pamiętaj, że w ten sposób możesz też przekazywać metody, które będą aktualizować dane w `state`.
+-   [Official React website](https://reactjs.org/docs/getting-started.html) - Documentation. Every question regarding React is answered.
+-   [What is Kanban?](https://www.youtube.com/watch?v=iVaFVa7HYj4&list=PLaD4FvsFdarR3oF1gp5_NmnlL-BQIE9sW&index=2) - 4 shorts videos with Kanban explained by Max from Jira Software (Atlassian).
+-   [10 Kanban Board Software Options You Need to Know For 2020](https://instagantt.com/gantt-chart-experts/top-10-best-kanban-board-software-in-2020) - excellent article with popular Kanban boards software. I mainly took inspiration for the design from [Monday](https://monday.com/)
+-   [The Modern React Bootcamp (Hooks, Context, NextJS, Router) by Colt Steele](https://www.udemy.com/course/modern-react-bootcamp/) - very good course about React with practical exercises with Hooks.
+-   [React Hooks Tutorial](https://www.youtube.com/watch?v=f687hBjwFcM) - by Ben Awad on Youtube.
+-   [Official video tutorial for React Beautiful Drag'n'Drop lib](https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd)
+-   [React Icons](https://react-icons.github.io/react-icons) - Documentation with React Icons library.
 
-Następnie zapisz dane w localStorage i sprawdź czy nadal wszystko działa.
+## Author
 
-Potem dopiero postaraj sie przemieszczać zadania między kolumnami bez zapisywania danych w localStorage. Jak już wspomieliśmy wystarczy ikrementować lub dekrementować pole `idColumn`. Pamiętaj, aby sprawdzić czy limit zadań w kolumnie nie jest osiągnięty i czy kolumna "następna" oraz "poprzednia" istnieje.
+-   Frontend Mentor - [@Axseinga](https://www.frontendmentor.io/profile/yourusername)
+-   LinkedIn - [Agnieszka Urbanowicz](https://www.linkedin.com/in/agnieszka-urbanowicz-051147151/)
 
-Jak już ten element będzie działał to daj możliwość tworzenia dodatkowych zadań przy pomocy formularza.
+## Acknowledgments
 
-Dopiero teraz wprowadź aktualizację danych w localStorage. Zwróć uwagę, że każda zmiana `state` aplikacji powinna być zapisywana w localStorage.
-
-Do wykonania zadania możesz użyć konfiguracji wykorzystującej ESLint-a i Prettier-a -> https://github.com/devmentor-pl/react-helloworld-modern
-
-
-
-&nbsp;
-
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) - for providing me with this task and for code review.
