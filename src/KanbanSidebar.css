@@ -1,0 +1,17 @@
+.KanbanSidebar {
+    background-color: #28314b;
+    height: 100%;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.KanbanSidebar-bottomColumn {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

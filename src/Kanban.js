@@ -4,6 +4,7 @@ import KanbanColumn from "./KanbanColumn";
 import "./Kanban.css";
 import KanbanModal from "./KanbanModal";
 import { DragDropContext } from "react-beautiful-dnd";
+import KanbanSidebar from "./KanbanSidebar";
 
 const Kanban = () => {
     const [columns, setColumns] = useState(
@@ -118,35 +119,39 @@ const Kanban = () => {
                 }),
             });
         });
-        console.log(updatedColumns);
+        setColumns(updatedColumns);
+        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <div className="Kanban">
-                {modal && (
-                    <KanbanModal
-                        closeModal={closeModal}
-                        addTask={addTask}
-                        columnData={modal}
-                    />
-                )}
-                <h1 className="Kanban-title">Kanban</h1>
-                <div className="Kanban-columns-container">
-                    {columns.map((c) => {
-                        return (
-                            <KanbanColumn
-                                columnData={c}
-                                key={c.name}
-                                openModal={openModal}
-                                removeTask={removeTask}
-                                editTask={editTask}
-                            />
-                        );
-                    })}
+        <>
+            <KanbanSidebar />
+            <DragDropContext onDragEnd={onDragEnd}>
+                <div className="Kanban">
+                    {modal && (
+                        <KanbanModal
+                            closeModal={closeModal}
+                            addTask={addTask}
+                            columnData={modal}
+                        />
+                    )}
+                    <h1 className="Kanban-title">Kanban</h1>
+                    <div className="Kanban-columns-container">
+                        {columns.map((c) => {
+                            return (
+                                <KanbanColumn
+                                    columnData={c}
+                                    key={c.name}
+                                    openModal={openModal}
+                                    removeTask={removeTask}
+                                    editTask={editTask}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
-        </DragDropContext>
+            </DragDropContext>
+        </>
     );
 };
 
