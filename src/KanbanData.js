@@ -1,17 +1,4 @@
-import React from "react";
-
 const taskLimitNumber = 5;
-
-/*export const tasksRowData = [
-    { id: 1, text: "Status component", idColumn: 1, user: "Anna" },
-    { id: 2, text: "Blog assets", idColumn: 2, user: "David" },
-    { id: 3, text: "Change css img", idColumn: 3, user: "Anna" },
-    { id: 4, text: "Chrome extension design", idColumn: 4, user: "David" },
-    { id: 5, text: "New slides for presentation", idColumn: 1, user: "Anna" },
-    { id: 6, text: "SEO", idColumn: 4, user: "Peter" },
-    { id: 7, text: "Meeting", idColumn: 3, user: "Anna" },
-    { id: 8, text: "UX", idColumn: 6, user: "Peter" },
-];*/
 
 export const columnsRawData = [
     {

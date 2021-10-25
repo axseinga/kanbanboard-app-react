@@ -1,16 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import { TasksContext } from "./context/TasksContext";
+import React from "react";
 import KanbanTask from "./KanbanTask";
 import "./KanbanColumn.css";
 import { Droppable } from "react-beautiful-dnd";
 
 const KanbanColumn = (props) => {
-    /*const tasks = useContext(TasksContext);*/
-    /*const filteredTasks = tasks.filter(
-        (task) => task.idColumn === props.columnData.id
-    );
-    props.updatedTasks(filteredTasks);*/
-
     return (
         <div
             className="KanbanColumn"
@@ -48,7 +41,7 @@ const KanbanColumn = (props) => {
             <div className="KanbanColumn-footer">
                 <button
                     className="KanbanColumn-btn-add"
-                    onClick={(e) => props.openModal(e)}
+                    onClick={() => props.openModal(props.columnData)}
                 >
                     Add task
                 </button>

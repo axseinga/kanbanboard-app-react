@@ -6,7 +6,9 @@ const KanbanModal = (props) => {
     const [text, handleChangeText] = useInputState("");
     const [user, handleChangeUser] = useInputState("");
 
-    const newTask = { content: text, person: user };
+    const idColumn = props.columnData;
+
+    const newTask = { id: 9, text: text, idColumn: idColumn, user: user };
 
     return (
         <div className="KanbanModal">

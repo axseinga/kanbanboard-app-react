@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { columnsRawData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
-import { TasksProvider } from "./context/TasksContext";
 import "./Kanban.css";
 import KanbanModal from "./KanbanModal";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -11,24 +10,6 @@ const Kanban = () => {
         JSON.parse(window.localStorage.getItem("columns")) || columnsRawData
     );
     const [modal, setModal] = useState(false);
-
-    /*const [tasks, setTasks] = useState(tasksRowData);*/
-
-    /*const updateTasksIds = (filteredTasks) => {
-        let updatedColumns = columns;
-        updatedColumns.forEach((c) => {
-            filteredTasks.forEach((t) => {
-                if (c.id === t.idColumn && !c.taskIds.includes(t)) {
-                    c.taskIds.push(t);
-                } else return;
-            });
-        });
-        updatedColumns.forEach((c) => {
-            const tasks = c.taskIds.length;
-            c.tasks = tasks;
-        });
-        setColumns(updatedColumns);
-    };*/
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result;
@@ -89,10 +70,9 @@ const Kanban = () => {
         }
     };
 
-    const openModal = (e) => {
-        setModal(true);
-        const parent = e.currentTarget.parentElement.parentElement;
-        console.log(parent);
+    const openModal = (data) => {
+        const columnId = data.id;
+        setModal(columnId);
     };
 
     const closeModal = () => {
@@ -100,8 +80,15 @@ const Kanban = () => {
     };
 
     const addTask = (newTask) => {
-        console.log(newTask);
         setModal(false);
+        const updatedColumns = columns.map((column) => {
+            if (column.id === newTask.idColumn) {
+                column.taskIds.push(newTask);
+                return column;
+            } else return column;
+        });
+        setColumns(updatedColumns);
+        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
     return (
@@ -110,24 +97,22 @@ const Kanban = () => {
                 {modal && (
                     <KanbanModal
                         closeModal={closeModal}
-                        addTask={(e) => addTask(e)}
+                        addTask={addTask}
+                        columnData={modal}
                     />
                 )}
                 <h1 className="Kanban-title">Kanban</h1>
-                {/*<TasksProvider value={tasks}>*/}
                 <div className="Kanban-columns-container">
                     {columns.map((c) => {
                         return (
                             <KanbanColumn
                                 columnData={c}
                                 key={c.name}
-                                /*updatedTasks={updateTasksIds}*/
-                                openModal={(e) => openModal(e)}
+                                openModal={openModal}
                             />
                         );
                     })}
                 </div>
-                {/*</TasksProvider>*/}
             </div>
         </DragDropContext>
     );
