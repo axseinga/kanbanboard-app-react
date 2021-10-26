@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { columnsRawData } from "./KanbanData";
 import KanbanColumn from "./KanbanColumn";
 import "./Kanban.css";
@@ -66,7 +66,6 @@ const Kanban = () => {
                 });
                 const newColumnsState2 = [...newColumnsState];
                 setColumns(newColumnsState2);
-                window.localStorage.setItem("columns", JSON.stringify(columns));
             } else return;
         }
     };
@@ -89,7 +88,6 @@ const Kanban = () => {
             } else return column;
         });
         setColumns(updatedColumns);
-        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
     const removeTask = (taskId) => {
@@ -103,7 +101,6 @@ const Kanban = () => {
             })
             .filter((column) => column.taskIds.length >= 0);
         setColumns(updatedColumns);
-        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
 
     const editTask = (taskId, newUser, newText) => {
@@ -120,8 +117,11 @@ const Kanban = () => {
             });
         });
         setColumns(updatedColumns);
-        window.localStorage.setItem("columns", JSON.stringify(columns));
     };
+
+    useEffect(() => {
+        window.localStorage.setItem("columns", JSON.stringify(columns));
+    }, [columns]);
 
     return (
         <>
