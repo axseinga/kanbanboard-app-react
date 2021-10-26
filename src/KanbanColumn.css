@@ -1,12 +1,13 @@
 .KanbanColumn {
     width: 12%;
+    max-width: 200px;
     text-align: center;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    overflow: scroll;
+    align-items: stretch;
+    min-height: 700px;
 }
 
 .KanbanColumns-tasks-container {

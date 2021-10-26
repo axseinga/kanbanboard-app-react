@@ -1,12 +1,14 @@
 .Kanban {
-    height: 90vh;
+    height: min-content;
     width: 90vw;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
 .Kanban-columns-container {
-    height: 90%;
+    min-height: min-content;
+    height: 100%;
     margin: 2rem 0;
     display: flex;
     justify-content: space-evenly;
+    align-items: stretch;
 }

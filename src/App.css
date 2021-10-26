@@ -1,5 +1,5 @@
 .App {
     display: flex;
     align-items: center;
-    height: 100vh;
+    height: min-content;
 }

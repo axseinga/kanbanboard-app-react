@@ -1,12 +1,14 @@
 .KanbanSidebar {
     background-color: #28314b;
-    height: 100%;
+    min-height: 100vh;
+    max-height: 110vh;
     width: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
+    align-self: stretch;
 }
 
 .KanbanSidebar-bottomColumn {
