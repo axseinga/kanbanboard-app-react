@@ -24,7 +24,7 @@ const KanbanPopup = (props) => {
         >
           <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">{columnData.first}</label>
+              <label htmlFor="first">{columnData.first}</label>
             </div>
             <input
               className="KanbanPopup-input"
@@ -37,7 +37,7 @@ const KanbanPopup = (props) => {
           </div>
           <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">{columnData.second}</label>
+              <label htmlFor="second">{columnData.second}</label>
             </div>
             <input
               className="KanbanPopup-input"
@@ -50,7 +50,7 @@ const KanbanPopup = (props) => {
           </div>
           <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">{columnData.third}</label>
+              <label htmlFor="third">{columnData.third}</label>
             </div>
             <input
               className="KanbanPopup-input"
