@@ -1,0 +1,66 @@
+.KanbanModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9;
+}
+
+.KanbanModal-content {
+    position: fixed;
+    background: white;
+    border-radius: 10px;
+    width: 15%;
+    min-width: min-content;
+    height: 30%;
+    min-height: min-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.KanbanModal-close-btn:before {
+    content: "x";
+    color: black;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.KanbanModal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 200px;
+}
+
+.KanbanModal-input-container {
+    margin: 10px 0;
+}
+
+.KanbanModal-input {
+    width: 200px;
+}
+
+.KanbanModal-input-submit-btn {
+    background-color: lightsteelblue;
+    opacity: 0.8;
+    width: 100px;
+    padding: 0.3rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-self: center;
+}

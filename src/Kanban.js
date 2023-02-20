@@ -5,12 +5,15 @@ import "./Kanban.css";
 import KanbanModal from "./KanbanModal";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanSidebar from "./KanbanSidebar";
+import KanbanPopup from "./KanbanPopup";
 
 const Kanban = () => {
-    const [columns, setColumns] = useState(
-        JSON.parse(window.localStorage.getItem("columns")) || columnsRawData
-    );
-    const [modal, setModal] = useState(false);
+  const [columns, setColumns] = useState(
+    JSON.parse(window.localStorage.getItem("columns")) || columnsRawData
+  );
+  const [modal, setModal] = useState(false);
+
+  const [popup, setPopup] = useState(false);
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result;
@@ -48,6 +51,7 @@ const Kanban = () => {
             const newColumnsState2 = [...newColumnsState];
             setColumns(newColumnsState2);
         } else {
+      setPopup(true);
             if (finish.taskIds.length < finish.limit) {
                 const startTaskIds = Array.from(start.taskIds);
                 const [item] = startTaskIds.splice(source.index, 1);
@@ -78,6 +82,10 @@ const Kanban = () => {
     const closeModal = () => {
         setModal(false);
     };
+
+  const closePopup = () => {
+    setPopup(false);
+  };
 
     const addTask = (newTask) => {
         setModal(false);
@@ -135,6 +143,20 @@ const Kanban = () => {
                             columnData={modal}
                         />
                     )}
+          {popup && (
+            <KanbanPopup
+              closeModal={closePopup}
+              first={
+                "What's the situation? Feel free to explain it in as much detail \
+                as you'd like."
+              }
+              second={"What part of the situation is most troubling?"}
+              third={
+                "Why did you decide to take this action (there're countless ways \
+              to reduce stress, why this specific one in this specific case)"
+              }
+            />
+          )}
                     <h1 className="Kanban-title">Kanban</h1>
                     <div className="Kanban-columns-container">
                         {columns.map((c) => {
