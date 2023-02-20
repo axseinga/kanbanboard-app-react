@@ -7,27 +7,27 @@ const KanbanPopup = (props) => {
   const [second, handleChangeSecond] = useInputState("");
   const [third, handleChangeThird] = useInputState("");
 
+  const columnData = props.columnData;
+
   return (
-    <div className="KanbanModal">
-      <section className="KanbanModal-content">
+    <div className="KanbanPopup">
+      <section className="KanbanPopup-content">
         <span
-          className="KanbanModal-close-btn"
-          onClick={props.closeModal}
+          className="KanbanPopup-close-btn"
+          onClick={props.closePopup}
         ></span>
         <form
-          className="KanbanModal-form"
+          className="KanbanPopup-form"
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <div className="KanbanModal-input-container">
+          <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">
-                {props.first}
-              </label>
+              <label htmlFor="user">{columnData.first}</label>
             </div>
             <input
-              className="KanbanModal-input"
+              className="KanbanPopup-input"
               type="text"
               name="first"
               id="first"
@@ -35,14 +35,12 @@ const KanbanPopup = (props) => {
               onChange={handleChangeFirst}
             ></input>
           </div>
-          <div className="KanbanModal-input-container">
+          <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">
-                {props.second}
-              </label>
+              <label htmlFor="user">{columnData.second}</label>
             </div>
             <input
-              className="KanbanModal-input"
+              className="KanbanPopup-input"
               type="text"
               name="second"
               id="second"
@@ -50,14 +48,12 @@ const KanbanPopup = (props) => {
               onChange={handleChangeSecond}
             ></input>
           </div>
-          <div className="KanbanModal-input-container">
+          <div className="KanbanPopup-input-container">
             <div className="KanbanModel-input-label">
-              <label htmlFor="user">
-                {props.third}
-              </label>
+              <label htmlFor="user">{columnData.third}</label>
             </div>
             <input
-              className="KanbanModal-input"
+              className="KanbanPopup-input"
               type="text"
               name="third"
               id="third"
@@ -66,8 +62,8 @@ const KanbanPopup = (props) => {
             ></input>
           </div>
           <button
-            className="KanbanModal-input-submit-btn"
-            onClick={props.closeModal}
+            className="KanbanPopup-input-submit-btn"
+            onClick={props.closePopup}
           >
             Submit
           </button>
