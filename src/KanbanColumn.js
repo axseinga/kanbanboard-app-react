@@ -40,7 +40,7 @@ const KanbanColumn = (props) => {
                     )}
                 </Droppable>
             </div>
-            <div className="KanbanColumn-footer">
+            {props.columnData.id === 1 && <div className="KanbanColumn-footer">
                 <button
                     className="KanbanColumn-btn-add"
                     onClick={() => props.openModal(props.columnData)}
@@ -50,7 +50,7 @@ const KanbanColumn = (props) => {
                 >
                     Add task
                 </button>
-            </div>
+            </div>}
         </div>
     );
 };

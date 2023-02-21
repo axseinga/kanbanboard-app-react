@@ -1,4 +1,4 @@
-.KanbanModal {
+.KanbanPopup {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     z-index: 9;
 }
 
-.KanbanModal-content {
+.KanbanPopup-content {
     position: fixed;
     background: white;
     border-radius: 10px;
@@ -26,7 +26,7 @@
     position: relative;
 }
 
-.KanbanModal-close-btn:before {
+.KanbanPopup-close-btn:before {
     content: "x";
     color: black;
     font-weight: 300;
@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-.KanbanModal-form {
+.KanbanPopup-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,15 +46,15 @@
     height: 200px;
 }
 
-.KanbanModal-input-container {
+.KanbanPopup-input-container {
     margin: 10px 0;
 }
 
-.KanbanModal-input {
+.KanbanPopup-input {
     width: 200px;
 }
 
-.KanbanModal-input-submit-btn {
+.KanbanPopup-input-submit-btn {
     background-color: lightsteelblue;
     opacity: 0.8;
     width: 100px;
